@@ -5,6 +5,13 @@ function hola(nombre, miCallback) {
     }, 1500);
 }
 
+function hablar(callbackHablar){
+    setTimeout(function (){
+        console.log('Bla bla bla Platzi ...');
+        callbackHablar();
+    }, );
+}
+
 function adios(nombre, otroCallback) {
     setTimeout(function () {
         console.log('Adiós '+ nombre);
@@ -14,7 +21,9 @@ function adios(nombre, otroCallback) {
 
 console.log('Iniciando proceso ...');
 hola('Carlos', function (nombre){
-    adios(nombre, function (){
-        console.log('Terminando proceso...');
-    });
+    hablar(function () {
+        adios(nombre, function (){
+            console.log('Terminando proceso...');
+        });
+    })
 });
