@@ -15,12 +15,26 @@ function hablar(callbackHablar){
 function adios(nombre, otroCallback) {
     setTimeout(function () {
         console.log('Adiós '+ nombre);
-        otroCallback();
+        //otroCallback();
     }, 1000);
+}
+
+function conversacion (nombre, veces, callback){
+    if(veces>0){
+        hablar(function(){
+            conversacion(nombre, --veces, callback);
+        })
+    } else {
+        adios(nombre);
+    }
 }
 
 console.log('Iniciando proceso ...');
 hola('Francisco', function (nombre){
+    conversacion(nombre, 5, adios);
+})
+
+/* hola('Francisco', function (nombre){
     hablar(function () {
         hablar(function () {
             adios(nombre, function (){
@@ -28,4 +42,4 @@ hola('Francisco', function (nombre){
             });
         })
     })
-});
+}); */
